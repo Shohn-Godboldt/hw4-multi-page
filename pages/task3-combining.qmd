@@ -4,6 +4,7 @@ author: "Shohn Godboldt"
 format: html
 editor: visual
 ---
+
 # Task 3: Combining Excel and Delimited Data
 
 This section combines two datasets (red wine and white wine) and performs filtering and summarization.
@@ -19,13 +20,12 @@ library(readxl)
 
 ##  White Wine Data
 
-```{r}
 # Read white wine data and add a "type" column
 white_wine <- read_excel("white-wine.xlsx", sheet = 1) %>%
 mutate(type = "white")
 ```
 
-##  Red Wine Data
+## Red Wine Data
 
 ```{r}
 # Read red wine data from CSV URL and add "type" column
@@ -56,4 +56,5 @@ alcohol_sd = sd(alcohol)
 # View result
 combined_wine
 ```
----
+
+------------------------------------------------------------------------

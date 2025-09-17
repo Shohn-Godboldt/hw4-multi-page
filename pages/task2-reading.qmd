@@ -4,13 +4,15 @@ author: "Shohn Godboldt"
 format: html
 editor: visual
 ---
+
 # Load Libraries
 
 ```{r}
 library(tidyverse)
 library(readxl)
 ```
-#  Task 2: Reading Delimited Data
+
+# Task 2: Reading Delimited Data
 
 ## Glass Data
 
@@ -59,4 +61,5 @@ across(mcg:vac, list(mean = mean, median = median), .names = "{.col}_{.fn}")
 # View summary statistics
 yeast_summary
 ```
----
+
+------------------------------------------------------------------------
