@@ -9,5 +9,93 @@
       "Home",
       "Homework 4"
     ]
+  },
+  {
+    "objectID": "pages/task1-concepts.html",
+    "href": "pages/task1-concepts.html",
+    "title": "Task 1: Conceptual Questions",
+    "section": "",
+    "text": "Task 1: Conceptual Questions\n\nIf your working directory is myfolder/homework/, what relative path would you specify to get the file located at myfolder/MyData.csv?\n\n\n../MyData.csv\n\n\nWhat are the major benefits of using R projects?\n\n\nR Projects provide reproducibility, isolated working environments, Git integration, and simplified relative paths.\n\n\nWhat is git and what is github?\n\n\nGit is a version control system to track code changes. GitHub is an online platform for hosting and collaborating on Git repositories.\n\n\nWhat are the two main differences between a tibble and a data.frame?\n\n\n\nTibbles don’t convert strings to factors automatically\n\nTibbles print a cleaner preview with just the first few rows\n\n\n\nRewrite the nested function using the chaining operator (%&gt;%):\n\n\nlibrary(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.3.3\n\n\nWarning: package 'ggplot2' was built under R version 4.3.3\n\n\nWarning: package 'tibble' was built under R version 4.3.3\n\n\nWarning: package 'tidyr' was built under R version 4.3.3\n\n\nWarning: package 'readr' was built under R version 4.3.3\n\n\nWarning: package 'purrr' was built under R version 4.3.3\n\n\nWarning: package 'dplyr' was built under R version 4.3.3\n\n\nWarning: package 'stringr' was built under R version 4.3.3\n\n\nWarning: package 'forcats' was built under R version 4.3.3\n\n\nWarning: package 'lubridate' was built under R version 4.3.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nas_tibble(iris) %&gt;%\n  select(starts_with(\"Petal\"), Species) %&gt;%\n  filter(Petal.Length &lt; 1.55) %&gt;%\n  arrange(Species)\n\n# A tibble: 37 × 3\n   Petal.Length Petal.Width Species\n          &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  \n 1          1.4         0.2 setosa \n 2          1.4         0.2 setosa \n 3          1.3         0.2 setosa \n 4          1.5         0.2 setosa \n 5          1.4         0.2 setosa \n 6          1.4         0.3 setosa \n 7          1.5         0.2 setosa \n 8          1.4         0.2 setosa \n 9          1.5         0.1 setosa \n10          1.5         0.2 setosa \n# ℹ 27 more rows",
+    "crumbs": [
+      "Home",
+      "Task 1: Conceptual Questions"
+    ]
+  },
+  {
+    "objectID": "pages/task3-combining.html",
+    "href": "pages/task3-combining.html",
+    "title": "Combing excel and Delimited data",
+    "section": "",
+    "text": "This section combines two datasets (red wine and white wine) and performs filtering and summarization.\n\n\n\n# Load required libraries\nlibrary(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.3.3\n\n\nWarning: package 'ggplot2' was built under R version 4.3.3\n\n\nWarning: package 'tibble' was built under R version 4.3.3\n\n\nWarning: package 'tidyr' was built under R version 4.3.3\n\n\nWarning: package 'readr' was built under R version 4.3.3\n\n\nWarning: package 'purrr' was built under R version 4.3.3\n\n\nWarning: package 'dplyr' was built under R version 4.3.3\n\n\nWarning: package 'stringr' was built under R version 4.3.3\n\n\nWarning: package 'forcats' was built under R version 4.3.3\n\n\nWarning: package 'lubridate' was built under R version 4.3.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(readxl)\n\nWarning: package 'readxl' was built under R version 4.3.3\n\n##  White Wine Data\n\n\n# Read white wine data and add a \"type\" column\nwhite_wine &lt;- read_excel(\"white-wine.xlsx\", sheet = 1) %&gt;%\nmutate(type = \"white\")\n\n\n\n\n\n# Read red wine data from CSV URL and add \"type\" column\nred_wine &lt;- read_delim(\n\"https://www4.stat.ncsu.edu/~online/datasets/red-wine.csv\",\ndelim = \";\"\n) %&gt;%\nmutate(type = \"red\")\n\nRows: 1599 Columns: 12\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \";\"\ndbl (12): fixed acidity, volatile acidity, citric acid, residual sugar, chlo...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\n\n\n\n# Combine red and white wine datasets into one\ncombined_wine &lt;- bind_rows(white_wine, red_wine)\n\n# Filter, sort, select, and summarize alcohol values by quality\ncombined_wine &lt;- combined_wine %&gt;%\nfilter(quality &gt;= 5, alcohol &lt; 13.2) %&gt;%\narrange(desc(quality)) %&gt;%\nselect(contains(\"acid\"), alcohol, type, quality) %&gt;%\ngroup_by(quality) %&gt;%\nsummarise(\nalcohol_mean = mean(alcohol),\nalcohol_sd = sd(alcohol)\n)\n\n# View result\ncombined_wine\n\n# A tibble: 4 × 3\n  quality alcohol_mean alcohol_sd\n    &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;\n1       5         9.87      0.761\n2       6        10.6       1.03 \n3       7        11.2       1.10 \n4       8        11.9       0.935",
+    "crumbs": [
+      "Home",
+      "Combing excel and Delimited data"
+    ]
+  },
+  {
+    "objectID": "pages/task3-combining.html#read-excel-files",
+    "href": "pages/task3-combining.html#read-excel-files",
+    "title": "Combing excel and Delimited data",
+    "section": "",
+    "text": "# Load required libraries\nlibrary(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.3.3\n\n\nWarning: package 'ggplot2' was built under R version 4.3.3\n\n\nWarning: package 'tibble' was built under R version 4.3.3\n\n\nWarning: package 'tidyr' was built under R version 4.3.3\n\n\nWarning: package 'readr' was built under R version 4.3.3\n\n\nWarning: package 'purrr' was built under R version 4.3.3\n\n\nWarning: package 'dplyr' was built under R version 4.3.3\n\n\nWarning: package 'stringr' was built under R version 4.3.3\n\n\nWarning: package 'forcats' was built under R version 4.3.3\n\n\nWarning: package 'lubridate' was built under R version 4.3.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(readxl)\n\nWarning: package 'readxl' was built under R version 4.3.3\n\n##  White Wine Data\n\n\n# Read white wine data and add a \"type\" column\nwhite_wine &lt;- read_excel(\"white-wine.xlsx\", sheet = 1) %&gt;%\nmutate(type = \"white\")",
+    "crumbs": [
+      "Home",
+      "Combing excel and Delimited data"
+    ]
+  },
+  {
+    "objectID": "pages/task3-combining.html#red-wine-data",
+    "href": "pages/task3-combining.html#red-wine-data",
+    "title": "Combing excel and Delimited data",
+    "section": "",
+    "text": "# Read red wine data from CSV URL and add \"type\" column\nred_wine &lt;- read_delim(\n\"https://www4.stat.ncsu.edu/~online/datasets/red-wine.csv\",\ndelim = \";\"\n) %&gt;%\nmutate(type = \"red\")\n\nRows: 1599 Columns: 12\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \";\"\ndbl (12): fixed acidity, volatile acidity, citric acid, residual sugar, chlo...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.",
+    "crumbs": [
+      "Home",
+      "Combing excel and Delimited data"
+    ]
+  },
+  {
+    "objectID": "pages/task3-combining.html#combine-filter-and-summarize",
+    "href": "pages/task3-combining.html#combine-filter-and-summarize",
+    "title": "Combing excel and Delimited data",
+    "section": "",
+    "text": "# Combine red and white wine datasets into one\ncombined_wine &lt;- bind_rows(white_wine, red_wine)\n\n# Filter, sort, select, and summarize alcohol values by quality\ncombined_wine &lt;- combined_wine %&gt;%\nfilter(quality &gt;= 5, alcohol &lt; 13.2) %&gt;%\narrange(desc(quality)) %&gt;%\nselect(contains(\"acid\"), alcohol, type, quality) %&gt;%\ngroup_by(quality) %&gt;%\nsummarise(\nalcohol_mean = mean(alcohol),\nalcohol_sd = sd(alcohol)\n)\n\n# View result\ncombined_wine\n\n# A tibble: 4 × 3\n  quality alcohol_mean alcohol_sd\n    &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;\n1       5         9.87      0.761\n2       6        10.6       1.03 \n3       7        11.2       1.10 \n4       8        11.9       0.935",
+    "crumbs": [
+      "Home",
+      "Combing excel and Delimited data"
+    ]
+  },
+  {
+    "objectID": "pages/task2-reading.html",
+    "href": "pages/task2-reading.html",
+    "title": "Reading Delimited Data",
+    "section": "",
+    "text": "library(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.3.3\n\n\nWarning: package 'ggplot2' was built under R version 4.3.3\n\n\nWarning: package 'tibble' was built under R version 4.3.3\n\n\nWarning: package 'tidyr' was built under R version 4.3.3\n\n\nWarning: package 'readr' was built under R version 4.3.3\n\n\nWarning: package 'purrr' was built under R version 4.3.3\n\n\nWarning: package 'dplyr' was built under R version 4.3.3\n\n\nWarning: package 'stringr' was built under R version 4.3.3\n\n\nWarning: package 'forcats' was built under R version 4.3.3\n\n\nWarning: package 'lubridate' was built under R version 4.3.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(readxl)\n\nWarning: package 'readxl' was built under R version 4.3.3",
+    "crumbs": [
+      "Home",
+      "Reading Delimited Data"
+    ]
+  },
+  {
+    "objectID": "pages/task2-reading.html#glass-data",
+    "href": "pages/task2-reading.html#glass-data",
+    "title": "Reading Delimited Data",
+    "section": "Glass Data",
+    "text": "Glass Data\n\n# Read glass data from a URL, using commas as delimiters\nglass_data &lt;- read_delim(\n\"https://www4.stat.ncsu.edu/~online/datasets/glass.data\",\ndelim = \",\",\ncol_names = c(\"Id\", \"RI\", \"Na\", \"Mg\", \"Al\", \"Si\", \"K\", \"Ca\", \"Ba\", \"Fe\", \"Type_of_glass\")\n)\n\nRows: 214 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (11): Id, RI, Na, Mg, Al, Si, K, Ca, Ba, Fe, Type_of_glass\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# Recode numeric Type_of_glass into descriptive categories\nglass_data &lt;- glass_data %&gt;%\nmutate(\nType_of_glass = case_when(\nType_of_glass == 1 ~ \"building_windows_float_processed\",\nType_of_glass == 2 ~ \"building_windows_non_float_processed\",\nType_of_glass == 3 ~ \"vehicle_windows_float_processed\",\nType_of_glass == 5 ~ \"containers\",\nType_of_glass == 6 ~ \"tableware\",\nType_of_glass == 7 ~ \"headlamps\"\n)\n)\n\n# View transformed data\nglass_data\n\n# A tibble: 214 × 11\n      Id    RI    Na    Mg    Al    Si     K    Ca    Ba    Fe Type_of_glass    \n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            \n 1     1  1.52  13.6  4.49  1.1   71.8  0.06  8.75     0  0    building_windows…\n 2     2  1.52  13.9  3.6   1.36  72.7  0.48  7.83     0  0    building_windows…\n 3     3  1.52  13.5  3.55  1.54  73.0  0.39  7.78     0  0    building_windows…\n 4     4  1.52  13.2  3.69  1.29  72.6  0.57  8.22     0  0    building_windows…\n 5     5  1.52  13.3  3.62  1.24  73.1  0.55  8.07     0  0    building_windows…\n 6     6  1.52  12.8  3.61  1.62  73.0  0.64  8.07     0  0.26 building_windows…\n 7     7  1.52  13.3  3.6   1.14  73.1  0.58  8.17     0  0    building_windows…\n 8     8  1.52  13.2  3.61  1.05  73.2  0.57  8.24     0  0    building_windows…\n 9     9  1.52  14.0  3.58  1.37  72.1  0.56  8.3      0  0    building_windows…\n10    10  1.52  13    3.6   1.36  73.0  0.57  8.4      0  0.11 building_windows…\n# ℹ 204 more rows",
+    "crumbs": [
+      "Home",
+      "Reading Delimited Data"
+    ]
+  },
+  {
+    "objectID": "pages/task2-reading.html#yeast-data",
+    "href": "pages/task2-reading.html#yeast-data",
+    "title": "Reading Delimited Data",
+    "section": "Yeast Data",
+    "text": "Yeast Data\n\n# Read space-delimited yeast data using read_table()\nyeast_data &lt;- read_table(\n\"https://www4.stat.ncsu.edu/~online/datasets/yeast.data\",\ncol_names = c(\"seq_name\", \"mcg\", \"gvh\", \"alm\", \"mit\", \"erl\", \"pox\", \"vac\", \"nuc\", \"class\")\n)\n\n\n── Column specification ────────────────────────────────────────────────────────\ncols(\n  seq_name = col_character(),\n  mcg = col_double(),\n  gvh = col_double(),\n  alm = col_double(),\n  mit = col_double(),\n  erl = col_double(),\n  pox = col_double(),\n  vac = col_double(),\n  nuc = col_double(),\n  class = col_character()\n)\n\n# Summarize mean and median for selected columns, grouped by 'class'\nyeast_summary &lt;- yeast_data %&gt;%\nselect(-seq_name, -nuc) %&gt;% # Remove columns not needed for summary\ngroup_by(class) %&gt;%\nsummarise(\nacross(mcg:vac, list(mean = mean, median = median), .names = \"{.col}_{.fn}\")\n)\n\n# View summary statistics\nyeast_summary\n\n# A tibble: 10 × 15\n   class mcg_mean mcg_median gvh_mean gvh_median alm_mean alm_median mit_mean\n   &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n 1 CYT      0.481       0.48    0.470      0.46     0.535      0.53     0.227\n 2 ERL      0.792       0.78    0.772      0.8      0.482      0.5      0.336\n 3 EXC      0.735       0.77    0.717      0.73     0.493      0.49     0.292\n 4 ME1      0.789       0.78    0.757      0.73     0.376      0.365    0.312\n 5 ME2      0.722       0.76    0.603      0.59     0.415      0.41     0.283\n 6 ME3      0.431       0.43    0.490      0.49     0.364      0.36     0.213\n 7 MIT      0.521       0.51    0.533      0.53     0.517      0.52     0.404\n 8 NUC      0.452       0.45    0.456      0.46     0.529      0.53     0.228\n 9 POX      0.521       0.48    0.508      0.505    0.506      0.51     0.248\n10 VAC      0.548       0.56    0.526      0.505    0.465      0.495    0.201\n# ℹ 7 more variables: mit_median &lt;dbl&gt;, erl_mean &lt;dbl&gt;, erl_median &lt;dbl&gt;,\n#   pox_mean &lt;dbl&gt;, pox_median &lt;dbl&gt;, vac_mean &lt;dbl&gt;, vac_median &lt;dbl&gt;",
+    "crumbs": [
+      "Home",
+      "Reading Delimited Data"
+    ]
   }
 ]
