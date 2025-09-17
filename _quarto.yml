@@ -1,7 +1,8 @@
 project:
   type: website
   output-dir: docs
-  render:
+  
+render:
   - index.qmd
   - pages/task1-concepts.qmd
   - pages/task2-reading.qmd
