@@ -1,0 +1,38 @@
+---
+title: "Task 1: Conceptual Questions"
+author: "Shohn Godboldt"
+editor: visual
+---
+
+
+# Task 1: Conceptual Questions
+
+1.  **If your working directory is `myfolder/homework/`, what relative path would you specify to get the file located at `myfolder/MyData.csv`?**
+
+> ../MyData.csv
+
+2.  **What are the major benefits of using R projects?**
+
+> R Projects provide reproducibility, isolated working environments, Git integration, and simplified relative paths.
+
+3.  **What is git and what is github?**
+
+> Git is a version control system to track code changes. GitHub is an online platform for hosting and collaborating on Git repositories.
+
+4.  **What are the two main differences between a tibble and a data.frame?**
+
+> -   Tibbles don't convert strings to factors automatically\
+> -   Tibbles print a cleaner preview with just the first few rows
+
+5.  **Rewrite the nested function using the chaining operator (`%>%`):**
+
+```{r}
+library(tidyverse)
+
+as_tibble(iris) %>%
+  select(starts_with("Petal"), Species) %>%
+  filter(Petal.Length < 1.55) %>%
+  arrange(Species)
+```
+
+---

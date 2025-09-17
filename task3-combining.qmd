@@ -1,0 +1,58 @@
+---
+title: "Combing excel and Delimited data"
+author: "Shohn Godboldt"
+editor: visual
+---
+# Task 3: Combining Excel and Delimited Data
+
+This section combines two datasets (red wine and white wine) and performs filtering and summarization.
+
+## Read Excel Files
+
+```{r}
+# Load required libraries
+library(tidyverse)
+library(readxl)
+
+
+
+##  White Wine Data
+
+```{r}
+# Read white wine data and add a "type" column
+white_wine <- read_excel("white-wine.xlsx", sheet = 1) %>%
+mutate(type = "white")
+```
+
+##  Red Wine Data
+
+```{r}
+# Read red wine data from CSV URL and add "type" column
+red_wine <- read_delim(
+"https://www4.stat.ncsu.edu/~online/datasets/red-wine.csv",
+delim = ";"
+) %>%
+mutate(type = "red")
+```
+
+## Combine, Filter, and Summarize
+
+```{r}
+# Combine red and white wine datasets into one
+combined_wine <- bind_rows(white_wine, red_wine)
+
+# Filter, sort, select, and summarize alcohol values by quality
+combined_wine <- combined_wine %>%
+filter(quality >= 5, alcohol < 13.2) %>%
+arrange(desc(quality)) %>%
+select(contains("acid"), alcohol, type, quality) %>%
+group_by(quality) %>%
+summarise(
+alcohol_mean = mean(alcohol),
+alcohol_sd = sd(alcohol)
+)
+
+# View result
+combined_wine
+```
+---

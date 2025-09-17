@@ -6,6 +6,12 @@ editor_options:
   chunk_output_type: inline
 ---
 
-An example pages site with multiple pages and a table of contents.
+# Homework 4
 
-This could be a landing page for the site. Feel free to put whatever here!
+Welcome to my ST 558 Homework 4 project site.
+
+Use the sidebar to navigate to each task:
+
+- Conceptual Questions
+- Reading Delimited Data
+- Combining Excel and Delimited Data
