@@ -1,6 +1,7 @@
 ---
 title: "Reading Delimited Data"
 author: "Shohn Godboldt"
+format: html
 editor: visual
 ---
 # Load Libraries

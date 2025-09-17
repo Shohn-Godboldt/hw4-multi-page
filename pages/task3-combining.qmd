@@ -1,6 +1,7 @@
 ---
 title: "Combing excel and Delimited data"
 author: "Shohn Godboldt"
+format: html
 editor: visual
 ---
 # Task 3: Combining Excel and Delimited Data
